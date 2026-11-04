@@ -3,7 +3,7 @@
 {% block content %}
 <div class="layout-account">
   <header class="page-heading"><h1>Мои заявки</h1><p>Здесь сохраняются ваши обращения, их статусы и ответы сотрудников.</p><a class="action-link" href="{{ url_for('index') }}">Подать заявку →</a></header>
-  <div class="ticket-list">
+  <div class="ticket-list" aria-label="История заявок">
     {% for item in items %}
     <article class="ticket-row">
       <div class="ticket-row-status"><span class="status">{{ 'Решена' if item.status == 'Закрыта' else item.status }}</span><small>{{ item.created_at }} UTC</small></div>

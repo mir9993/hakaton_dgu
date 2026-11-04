@@ -14,7 +14,7 @@
     {% include 'theme_switch.html' %}
     {% if current_employee %}
     <nav class="account-nav" aria-label="Панель сотрудника">
-      <span>{{ current_employee.name }} · {{ 'Администратор' if current_employee.role == 'admin' else 'Исполнитель' }}</span>
+      <span class="staff-person">{{ current_employee.name }} · {{ 'Администратор' if current_employee.role == 'admin' else 'Исполнитель' }}</span>
       <a href="{{ url_for('admin') }}" {% if request.endpoint in ('admin', 'admin_ticket', 'admin_applicant') %}aria-current="page"{% endif %}>Заявки</a>
       {% if current_employee.role == 'admin' %}
       <a href="{{ url_for('manage_categories') }}" {% if request.endpoint == 'manage_categories' %}aria-current="page"{% endif %}>Категории</a>

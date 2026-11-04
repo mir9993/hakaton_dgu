@@ -10,7 +10,7 @@
   </section>
   <section aria-labelledby="categories-list"><h2 id="categories-list">Список категорий</h2>
   {% for category in categories %}
-    <article class="management-row"><h3>{{ category.name }}</h3><p class="status">{{ 'активна' if category.is_active else 'неактивна' }}</p>
+    <article class="management-row category-row"><h3>{{ category.name }}</h3><p class="status">{{ 'активна' if category.is_active else 'неактивна' }}</p>
       <form method="post" class="inline"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><input type="hidden" name="action" value="rename"><input type="hidden" name="category_id" value="{{ category.id }}"><label class="field">Название<input name="name" value="{{ category.name }}" maxlength="120" required></label><button>Сохранить</button></form>
       <form method="post"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><input type="hidden" name="category_id" value="{{ category.id }}"><input type="hidden" name="action" value="{{ 'disable' if category.is_active else 'enable' }}"><button>{{ 'Отключить' if category.is_active else 'Включить' }}</button></form>
     </article>

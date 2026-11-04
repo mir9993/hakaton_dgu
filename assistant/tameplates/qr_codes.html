@@ -10,7 +10,7 @@
   </section>
   <section aria-labelledby="rooms-heading"><h2 id="rooms-heading">Помещения</h2>
   {% for room in rooms %}
-    <article class="management-row"><h3>{{ room.building }} — {{ room.name }}</h3>
+    <article class="management-row room-row"><h3>{{ room.building }} — {{ room.name }}</h3>
       <img src="{{ url_for('admin_qr_image', room_id=room.id) }}" alt="QR-код: {{ room.building }}, {{ room.name }}" width="220" height="220">
       <p><a href="{{ url_for('admin_qr_image', room_id=room.id) }}" download="room-{{ room.id }}.png">Скачать QR-код</a></p>
       <details><summary>Изменить место</summary><form method="post" class="stack"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><input type="hidden" name="room_id" value="{{ room.id }}"><label class="field">Корпус<input name="building" value="{{ room.building }}" maxlength="120" required></label><label class="field">Название<input name="name" value="{{ room.name }}" maxlength="120" required></label><button>Сохранить</button></form></details>

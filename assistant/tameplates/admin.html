@@ -16,7 +16,7 @@
     <label class="field">Дата по (UTC)<input type="date" name="date_to" value="{{ request.args.get('date_to', '') }}"></label>
     <button>Найти</button><a href="{{ url_for('admin') }}">Сбросить фильтры</a>
   </form></details>
-  <p id="table-scroll-help">Таблицу можно прокрутить по горизонтали: установите на неё фокус и пользуйтесь стрелками влево и вправо.</p>
+  <h3 class="queue-results">Результаты поиска</h3><p id="table-scroll-help">Таблицу можно прокрутить по горизонтали: установите на неё фокус и пользуйтесь стрелками влево и вправо.</p>
   <div class="table-wrap" role="region" aria-label="Таблица заявок" tabindex="0" aria-describedby="table-scroll-help"><table>
     <thead><tr><th scope="col">№</th><th scope="col">Создана (UTC)</th><th scope="col">Заявитель</th><th scope="col">Описание</th><th scope="col">Помещение</th><th scope="col">Категория</th><th scope="col">Статус</th><th scope="col">Исполнитель</th></tr></thead>
     <tbody>{% for x in items %}<tr><td><a href="{{ url_for('admin_ticket', ticket_id=x.id) }}">{{ x.id }}</a></td><td>{{ x.created_at }}</td><td>{% if x.applicant_id %}<a href="{{ url_for('admin_applicant', applicant_id=x.applicant_id) }}">{{ x.last_name }} {{ x.first_name }}</a><br>{{ x.record_book }}{% else %}Без аккаунта (старая){% endif %}</td><td><a href="{{ url_for('admin_ticket', ticket_id=x.id) }}">{{ x.description|truncate(120) }}</a></td><td>{{ x.building }}, {{ x.room }}</td><td>{{ x.category }}</td><td><span class="status">{{ 'Решена' if x.status == 'Закрыта' else x.status }}</span></td><td>{{ x.assignee or 'Не назначен' }}</td></tr>{% else %}<tr><td colspan="8">Заявок не найдено. Попробуйте изменить фильтры.</td></tr>{% endfor %}</tbody>

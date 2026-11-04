@@ -70,3 +70,117 @@
 .dw-shell .site-content :is(button,summary,a,input,select,textarea):focus-visible { outline:3px solid var(--focus, #1871b9); outline-offset:3px; }
 @media (max-width:900px) { .ticket-detail-grid, .applicant-record { grid-template-columns:1fr; } }
 @media (max-width:600px) { .ticket-row { grid-template-columns:1fr; gap:.5rem; } .ticket-row-status { flex-direction:row; align-items:center; flex-wrap:wrap; } .ticket-detail-grid dl { grid-template-columns:1fr; gap:.25rem; } .ticket-detail-grid dd { margin-bottom:.65rem; } }
+
+/* Working document: quiet navigation, paper-like work area, data first. */
+body:not(.auth-page) { --work-ground:#e4ece8; --work-paper:#f8faf8; --work-ink:#183c35; --work-line:#a1b5ab; --work-panel:#edf3ef; background:var(--work-ground); }
+:root[data-theme='dark'] body:not(.auth-page) { --work-ground:#10231f; --work-paper:#192f29; --work-ink:#e5f2e9; --work-line:#718f80; --work-panel:#243e35; }
+body:not(.auth-page) .dw-shell { grid-template-columns: 14rem minmax(0,1fr); gap:0; }
+body:not(.auth-page) .dw-shell .site-header { background:var(--work-ground); color:var(--work-ink); padding:1.5rem 1rem; gap:1.4rem; }
+body:not(.auth-page) .dw-shell .site-header .brand { color:var(--work-ink); align-items:flex-start; }
+body:not(.auth-page) .brand small { color:var(--work-ink); opacity:.8; }
+body:not(.auth-page) .service-mark { background:#16483d; border:0; width:2.5rem; height:2.5rem; }
+body:not(.auth-page) .dw-shell .site-header .account-nav { position:static; width:100%; padding:1rem 0 0; margin:0; border-top:1px solid var(--work-line); display:flex; flex-direction:column; align-items:stretch; }
+body:not(.auth-page) .account-person { margin:1rem .6rem 0; color:var(--work-ink); }
+body:not(.auth-page) .dw-shell .account-nav a, body:not(.auth-page) .dw-shell .account-nav button { color:var(--work-ink); padding:.7rem; min-height:44px; text-decoration:none; border-radius:0; }
+body:not(.auth-page) .dw-shell .account-nav a[aria-current='page'] { background:var(--work-paper); box-shadow:inset 3px 0 #2e715c; text-decoration:none; }
+body:not(.auth-page) .dw-shell .account-nav button { background:transparent; border:1px solid var(--work-line); }
+body:not(.auth-page) .dw-shell .account-nav button:hover { background:var(--work-panel); color:var(--work-ink); }
+body:not(.auth-page) .dw-shell main { background:var(--work-paper); margin:.65rem .65rem .65rem 0; border:0; border-radius:0; }
+body:not(.auth-page) .dw-shell .site-content { width:min(100% - 3rem, 1300px); padding-block:2rem 4rem; }
+body:not(.auth-page) .site-content h1 { font-family:Georgia,'Times New Roman',serif; font-weight:400; font-size:clamp(2rem,3.1vw,3rem); color:var(--work-ink); }
+body:not(.auth-page) .site-content :is(.page-heading,.staff-heading) { border-color:var(--work-line); }
+body:not(.auth-page) .site-content :is(.surface,.card,.staff-queue) { background:transparent; border-radius:0; box-shadow:none; }
+body:not(.auth-page) .site-content :is(.surface,.staff-queue) { padding:0; }
+body:not(.auth-page) .request-workspace { gap:clamp(1.5rem,3vw,3rem); }
+body:not(.auth-page) .request-workspace > details { background:transparent; padding:0; }
+body:not(.auth-page) .request-assistance { background:var(--work-panel); padding:1rem; }
+body:not(.auth-page) .request-assistance .ai-assistant { background:transparent; padding:0; }
+body:not(.auth-page) .queue-filters { background:var(--work-panel); border-radius:0; }
+body:not(.auth-page) .table-wrap { border-radius:0; }
+body:not(.auth-page) .layout-admin-ticket, body:not(.auth-page) .layout-created { max-width:none; }
+body:not(.auth-page) .ticket-detail-grid, body:not(.auth-page) .ticket-workbench, body:not(.auth-page) .management-workbench { gap:clamp(1.5rem,3vw,3rem); }
+body:not(.auth-page) .error { color:var(--danger); background:var(--danger-bg); }
+body:not(.auth-page) .error p { color:inherit; }
+body:not(.auth-page) .site-footer { background:var(--work-ground); color:var(--work-ink); }
+body:not(.auth-page) .site-footer a { color:var(--work-ink); }
+@media (max-width:900px) {
+ body:not(.auth-page) .dw-shell { display:block; }
+ body:not(.auth-page) .dw-shell .site-header { flex-direction:row; flex-wrap:wrap; align-items:center; padding:1rem; gap:.75rem; }
+ body:not(.auth-page) .dw-shell .site-header .account-nav { flex-direction:row; flex-wrap:wrap; align-items:center; padding:.5rem 0 0; }
+ body:not(.auth-page) .account-person { width:auto; margin:0 .5rem; }
+ body:not(.auth-page) .dw-shell main { margin:0; }
+ body:not(.auth-page) .dw-shell .site-content { width:calc(100% - 2rem); }
+ body:not(.auth-page) .request-workspace > details { grid-column:1; grid-row:1; }
+ body:not(.auth-page) .request-assistance { grid-column:1; grid-row:2; }
+}
+body:not(.auth-page) .theme-switch { width:max-content; max-width:100%; }
+body:not(.auth-page) .theme-switch button { white-space:nowrap; overflow-wrap:normal; font-size:.78rem; padding-inline:.4rem; }
+
+/* Work surfaces: records, decisions and history take precedence over chrome. */
+.dw-shell .site-content { line-height:1.5; }
+.dw-shell .site-content h1, .dw-shell .site-content h2, .dw-shell .site-content h3 { text-wrap:balance; }
+.dw-shell .site-content h2 { font-size:1.25rem; line-height:1.25; }
+.dw-shell .site-content h3 { font-size:1rem; line-height:1.3; }
+.dw-shell .site-content :is(a,button,summary) { text-underline-offset:.18em; }
+.dw-shell .site-content :is(input,select,textarea) { max-width:100%; }
+.dw-shell .site-content :is(button,summary) { min-height:44px; }
+.dw-shell .site-content summary { display:list-item; padding-block:.6rem; }
+.dw-shell .page-heading > p, .dw-shell .staff-heading > p { max-width:68ch; }
+.dw-shell .page-heading h1, .dw-shell .staff-heading h1 { margin-bottom:.35rem; }
+.dw-shell .page-heading p:last-child, .dw-shell .staff-heading p:last-child { margin-bottom:0; }
+.dw-shell .status { font-weight:700; }
+.layout-account .page-heading .action-link { display:inline-block; margin-top:.6rem; }
+.layout-account .ticket-row { grid-template-columns:minmax(9rem,.3fr) minmax(0,1fr); padding:1.3rem 0; }
+.layout-account .ticket-row-main h2 { font-size:1.2rem; }
+.layout-account .ticket-row-main .ticket-text { max-width:68ch; }
+.layout-index .safety-note { max-width:80ch; margin-bottom:1.75rem; }
+.layout-index #manual-form > summary { border-bottom:1px solid var(--work-line); font-size:1.15rem; font-weight:700; }
+.layout-index fieldset { border:0; border-top:1px solid var(--work-line); padding:1rem 0 0; margin:1.5rem 0; min-width:0; }
+.layout-index legend { padding:0 .5rem 0 0; font-weight:700; }
+.layout-index .request-assistance { border-top:3px solid var(--work-ink); }
+.layout-created .ticket-detail-grid { border-bottom:1px solid var(--work-line); padding-bottom:1.5rem; }
+.layout-created dl dt, .applicant-record dt { font-weight:700; }
+.layout-created .ticket-photos { border-left:1px solid var(--work-line); padding-left:1.5rem !important; }
+.layout-created .ticket-conversation { max-width:72rem; }
+.layout-created .account-history, .ticket-history .history, .employee-history ol { padding:0; list-style:none; }
+.layout-created .account-history li, .ticket-history .history li, .employee-history li { border-top:1px solid var(--work-line); padding:1rem 0; }
+.layout-created .conversation-meta, .ticket-history .history-meta { display:flex; flex-wrap:wrap; gap:.5rem 1rem; align-items:baseline; }
+.layout-created .conversation-meta time, .ticket-history .history-meta time { color:var(--muted); font-size:.875rem; font-variant-numeric:tabular-nums; }
+.layout-error .error-panel { max-width:48rem; padding:1rem 0 2rem !important; }
+.layout-admin .staff-heading { margin-bottom:0 !important; }
+.layout-admin .queue-filters { border:1px solid var(--work-line); }
+.layout-admin .queue-results { margin:1.5rem 0 .3rem; }
+.layout-admin #table-scroll-help { font-size:.875rem; color:var(--muted); }
+.layout-admin table { min-width:60rem; }
+.layout-admin table th { text-align:left; }
+.layout-admin table td { border-bottom:1px solid var(--work-line); }
+.layout-admin .statistics-values { display:flex; flex-wrap:wrap; gap:1rem 2rem; }
+.layout-admin .statistics-values strong { font-size:1.25rem; font-variant-numeric:tabular-nums; }
+.layout-admin .statistics-distributions { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem 2rem; }
+.layout-admin .statistics-distributions ul { padding-left:1.25rem; }
+.ticket-workbench > div:first-child > section { border-bottom:1px solid var(--work-line); padding-bottom:1.5rem !important; }
+.ticket-workbench > div:last-child { background:var(--work-panel); padding:1.25rem; }
+.ticket-workbench .ticket-description { white-space:pre-wrap; }
+.ticket-history .history-meta span { font-size:.875rem; }
+.applicant-record .applicant-tickets { border-left:1px solid var(--work-line); padding-left:1.5rem !important; }
+.applicant-ticket-list { padding:0; list-style:none; }
+.management-workbench > section:first-child { background:var(--work-panel) !important; padding:1.25rem !important; }
+.management-workbench > section:last-child > h2 { margin-bottom:.5rem; }
+.management-row { padding:1.25rem 0; }
+.management-row h3 { font-size:1.1rem; }
+.management-row .inline { display:flex; flex-wrap:wrap; gap:.6rem; align-items:end; }
+.management-row .inline .field { flex:1 1 13rem; }
+.management-row .password-reset { border-top:1px solid var(--work-line); }
+.room-row img { width:10rem; padding:.5rem; display:block; }
+.employee-history { margin-top:2.5rem; border-top:1px solid var(--work-line); padding-top:1.5rem !important; }
+.staff-person { padding:.5rem .7rem; overflow-wrap:anywhere; }
+@media (max-width:900px) {
+ .layout-created .ticket-photos, .applicant-record .applicant-tickets { border-left:0; padding-left:0 !important; border-top:1px solid var(--work-line); padding-top:1rem !important; }
+ .ticket-workbench > div:last-child { padding:1rem; }
+}
+@media (max-width:600px) {
+ .layout-account .ticket-row { grid-template-columns:1fr; }
+ .layout-admin .statistics-distributions { grid-template-columns:1fr; }
+ .dw-shell .site-content { padding-block:1.5rem 3rem; }
+ .dw-shell .site-content :is(button,input,select,textarea) { font-size:1rem; }
+}

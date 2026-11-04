@@ -2,7 +2,7 @@
 {% block title %}Не удалось выполнить действие — Служба колледжа{% endblock %}
 {% block content %}
 <div class="layout-error">
-  <section class="surface" aria-labelledby="error-heading">
+  <section class="surface error-panel" aria-labelledby="error-heading">
     <h1 id="error-heading">Не удалось выполнить действие</h1>
     <p class="error" role="alert">{{ message }}</p>
     <nav class="error-actions" aria-label="Дальнейшие действия"><a class="action-link" href="{{ url_for('index') }}">Вернуться к форме</a><a href="{{ url_for('account') }}">Личный кабинет</a></nav>

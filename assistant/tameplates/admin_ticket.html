@@ -15,7 +15,7 @@
       <form method="post" action="{{ url_for('admin_ticket', ticket_id=item.id) }}"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><input type="hidden" name="version" value="{{ item.version }}"><input type="hidden" name="status" value="В работе"><input type="hidden" name="assignee_id" value="{{ item.assignee_id or current_employee.id }}"><input type="hidden" name="visibility" value="public"><input type="hidden" name="comment" value="Заявка принята, приступаем к работе."><button>Принять в работу и сообщить заявителю</button></form>{% endif %}
     </section>
     <section class="surface"><h2>Фотографии</h2>{% for a in attachments %}<a href="{{ url_for('admin_attachment', attachment_id=a.id) }}">Скачать фото {{ a.id }}</a>{% else %}<p>Нет фотографий</p>{% endfor %}</section>
-    <section class="surface ticket-history"><h2>История (UTC)</h2><ol class="history">{% for h in history %}<li>{{ h.created_at }} — {{ h.author or 'Заявитель' }} — {{ 'публично' if h.is_public else 'внутреннее' }}: {{ h.change_description }}{% if h.comment %}<p class="ticket-description">{{ h.comment }}</p>{% endif %}</li>{% else %}<li>Изменений пока нет.</li>{% endfor %}</ol></section>
+    <section class="surface ticket-history"><h2>История (UTC)</h2><ol class="history">{% for h in history %}<li><div class="history-meta"><time>{{ h.created_at }} UTC</time><strong>{{ h.author or 'Заявитель' }}</strong><span>{{ 'Публично' if h.is_public else 'Внутреннее' }}</span></div><p>{{ h.change_description }}</p>{% if h.comment %}<p class="ticket-description">{{ h.comment }}</p>{% endif %}</li>{% else %}<li>Изменений пока нет.</li>{% endfor %}</ol></section>
   </div>
   <div>
   {% if can_edit %}

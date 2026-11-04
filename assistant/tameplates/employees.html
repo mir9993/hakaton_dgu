@@ -21,6 +21,6 @@
   {% endfor %}
   </section>
 </div>
-<section class="surface"><h2>История управления сотрудниками (UTC)</h2><ol>{% for h in history %}<li>{{ h.created_at }} — {{ h.actor_name }} — {{ h.employee_name }}: {{ h.action }}</li>{% else %}<li>Действий пока нет.</li>{% endfor %}</ol></section>
+<section class="surface employee-history"><h2>История управления сотрудниками (UTC)</h2><ol>{% for h in history %}<li>{{ h.created_at }} — {{ h.actor_name }} — {{ h.employee_name }}: {{ h.action }}</li>{% else %}<li>Действий пока нет.</li>{% endfor %}</ol></section>
 </div>
 {% endblock %}

@@ -11,7 +11,6 @@
   <div class="dw-shell"><header class="site-header">
     <a class="brand" href="{{ url_for('index') }}"><span class="service-mark" aria-hidden="true">СК</span><span>Служба колледжа<small>Заявки и помощь</small></span></a>
     {% include 'theme_switch.html' %}
-  </header>
   {% if current_applicant %}
   <nav class="account-nav" aria-label="Личный кабинет">
     <a href="{{ url_for('index') }}" {% if request.endpoint == 'index' %}aria-current="page"{% endif %}>Подать заявку</a>
@@ -20,6 +19,7 @@
     <form method="post" action="{{ url_for('applicant_logout') }}"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button type="submit">Выйти</button></form>
   </nav>
   {% endif %}
+  </header>
   <main id="main-content" tabindex="-1"><div class="site-content">{% block content %}{% endblock %}</div></main>
   </div><footer class="site-footer"><span>Служба заявок колледжа</span><a href="{{ url_for('login') }}">Вход сотрудника</a></footer>
 </body>
